@@ -52,6 +52,8 @@ GEM
     figaro (0.6.4)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    google-webfonts (0.1.2)
+      actionpack (>= 3.0.0)
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
@@ -141,6 +143,7 @@ DEPENDENCIES
   activerecord-postgis-adapter
   coffee-rails (~> 3.2.1)
   figaro
+  google-webfonts
   jquery-rails
   leaflet-plugins-rails!
   leaflet-rails
