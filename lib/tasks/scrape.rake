@@ -2,19 +2,14 @@ require 'flickraw'
 
 namespace :scrape do
   desc "Scrapes flickr for friendlily-licensed images"
-  task :flickr => :environment do
+  task :flickr, [:photoset_id] => :environment do |task, task_args|
     FlickRaw.api_key=ENV["FLICKRAW_API_KEY"]
     FlickRaw.shared_secret=ENV["FLICKRAW_SHARED_SECRET"]
 
-    # new_b = flickr.places.find :query => "Adelaide, South Australia"
-    # latitude = new_b[0]['latitude'].to_f
-    # longitude = new_b[0]['longitude'].to_f
+    p task_args.inspect
 
-    # radius = 1
     args = {}
-    # args[:bbox] = "#{longitude - radius},#{latitude - radius},#{longitude + radius},#{latitude + radius}"
-
-    args[:photoset_id] = "72157626397640297"
+    args[:photoset_id] = task_args[:photoset_id]
 
 
     # photo = discovered_pictures.first
@@ -22,14 +17,10 @@ namespace :scrape do
 
     discovered_pictures = flickr.photosets.getPhotos args
 
-    discovered_pictures["photo"].each do |photo|
-        url = FlickRaw.url photo
-        # p url
-        # p photo.title
-        # exif = flikcr.photos.getExif :photo_id => photo.id
-        # p exif.inspect
+    discovered_pictures["photo"].each do |flickr_photo|
+        url = FlickRaw.url flickr_photo
 
-        title = photo.title.scan(/^(?<offcut>(.*, |.* at |.* in )?(?<address>.*?)),? ([ca ,]*)(?<year>[0-9]{4})$/i)
+        title = flickr_photo.title.scan(/^(?<offcut>(.*, |.* (at|in|on) )?(?<address>.*?)),? ([ca ,]*)(?<year>[0-9]{4})$/i)
 
 
         if title.empty? then
@@ -43,13 +34,13 @@ namespace :scrape do
         p title
         p offcut + ", " + address + ", " + year
 
-        info = flickr.photos.getInfo(:photo_id => photo.id)
+        info = flickr.photos.getInfo(:photo_id => flickr_photo.id)
         description = info.description
 
 
 
         p "Getting candidate spots"
-        candidate_spots = Geocoder.search(address + "Adelaide")
+        candidate_spots = Geocoder.search("#{address}, Adelaide, South Australia")
 
         if candidate_spots.empty? then
             next
@@ -61,17 +52,24 @@ namespace :scrape do
         p spot.latitude
         p spot.longitude
 
-        image = Image.new
+        image = Image.where(:source_ref => flickr_photo.id).first
+
+        if image == nil then
+            image = Image.new
+        end
+        
         image.caption = offcut + address
         image.longitude = spot.longitude
         image.latitude = spot.latitude
         image.location_description = address
         image.relevant_from = Date.new(year.to_i)
         image.relevant_to = image.relevant_from + 1.years
-        image.fullsize_url = FlickRaw.url_m photo
-        image.thumbnail_url = FlickRaw.url_t photo
+        image.fullsize_url = FlickRaw.url_m flickr_photo
+        image.thumbnail_url = FlickRaw.url_t flickr_photo
         image.copyright = "Assumed Creative Commons per State Library specification"
         image.caption = description
+        image.source = "Flickr"
+        image.source_ref = flickr_photo.id
 
         image.save
     end
