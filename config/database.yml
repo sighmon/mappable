@@ -30,9 +30,10 @@ development:
   encoding: unicode
   database: mappable_development
   pool: 5
-  username:
-  password:
+  username: mappable
+  password: password
 
+# Postgresql settings
 production:
   adapter: postgresql
   encoding: unicode
@@ -49,10 +50,3 @@ test:
   username:
   password:
 
-# Postgis
-# development:
-#   adapter: postgis
-#   database: mappable_gis_development
-#   encoding: utf8
-#   postgis_extension: postgis
-#   schema_search_path: '"$user", public, postgis'
