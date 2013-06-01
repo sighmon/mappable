@@ -38,6 +38,14 @@ gem 'google-webfonts'
 # https://github.com/ffaerber/retina_image_tag
 gem 'retina_image_tag', '>= 1.0.2'
 
+# Google Analytics https://github.com/bgarret/google-analytics-rails
+gem 'google-analytics-rails'
+
+# Kaminari for pagination http://railscasts.com/episodes/254-pagination-with-kaminari
+# Fixed broken layout http://stackoverflow.com/questions/12282240/kaminari-pagination-layout-is-broken
+gem 'kaminari', '~> 0.13.0'
+gem 'kaminari-bootstrap', '0.1.2' # '~> 0.1.2' # 0.1.3 breaks locally for some reason.
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

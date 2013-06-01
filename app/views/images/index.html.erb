@@ -47,6 +47,8 @@
   </tbody>
 </table>
 
+<%= paginate @images %>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_image_path,
             :class => 'btn btn-primary' %>

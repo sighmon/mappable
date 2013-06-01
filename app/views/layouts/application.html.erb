@@ -10,6 +10,8 @@
 
     <%= google_webfonts_link_tag :droid_sans => [400, 700] %>
 
+    <%= analytics_init if Rails.env.production? %>
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
@@ -78,7 +80,7 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Hackerspace Adelaide. This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.</p>
+        <p>&copy; <a href="http://hackerspace-adelaide.org.au">Hackerspace Adelaide</a>. This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.</p>
       </footer>
 
     </div> <!-- /container -->
