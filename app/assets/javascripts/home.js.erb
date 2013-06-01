@@ -39,23 +39,23 @@ var cameraIcon = L.icon({
 // Rendering to the map bounds on movement //
 ////////////////////////////////////////////////
 
-var myLayer = L.geoJson([], {
-       pointToLayer: function (feature, latlng) {
-               return L.marker(latlng, {icon: cameraIcon});
-       },
-       onEachFeature: function (feature, layer) {
-            if (feature.properties && feature.properties.popupContent) {
-                layer.bindPopup(feature.properties.popupContent);
-            }
-        }
-    }
-    ).addTo(map);
+var geoLayer;
 
 function search() {
     jQuery.get("images/search", { "maximum_latitude": map.getBounds().getNorthWest().lat, "minimum_latitude": map.getBounds().getSouthEast().lat, "maximum_longitude": map.getBounds().getSouthEast().lng, "minimum_longitude": map.getBounds().getNorthWest().lng }, function(data){
-        myLayer.addData(data);
-        //L.geoJson(data).addTo(map);
-        console.log(data);
+        //myLayer.addData(data);
+        if (geoLayer) map.removeLayer(geoLayer);
+        geoLayer = L.geoJson(data, {
+          pointToLayer: function (feature, latlng) {
+            return L.marker(latlng, {icon: cameraIcon});
+          },
+          onEachFeature: function (feature, layer) {
+            if (feature.properties && feature.properties.popupContent) {
+              layer.bindPopup(feature.properties.popupContent);
+            }
+          }
+        }).addTo(map);
+        //console.log(data);
     });
 }
 
