@@ -38,20 +38,20 @@ function onMapClick(e) {
 
 map.on('click', onMapClick);
 
-//////////////////////////////////////
-// Re-rendering things on map movement
-//////////////////////////////////////
+/////////////////////////////////////////////
+// Re-rendering to the map bounds on movement
+/////////////////////////////////////////////
 
 function onMapMove(e) {
     polygon
-        .setLatLngs([[map.getCenter().lat - .02, map.getCenter().lng - .02],
-            [map.getCenter().lat + .02, map.getCenter().lng + .02],
-            [map.getCenter().lat - .02, map.getCenter().lng + .02],
-            [map.getCenter().lat + .02, map.getCenter().lng - .02]]
+        .setLatLngs([map.getBounds().getNorthWest(),
+            map.getBounds().getNorthEast(),
+            map.getBounds().getSouthEast(),
+            map.getBounds().getSouthWest()]
         );
 }
 
-map.on('move', onMapMove);
+map.on('moveend', onMapMove);
 
 
 ///////////////////////////////////////////////////
