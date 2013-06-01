@@ -14,12 +14,11 @@ A GovHack Adelaide challenge by [Hackerspace Adelaide](http://hackerspace-adelai
 ## Wiki
 [Datasets](https://github.com/sighmon/mappable/wiki/Datasets) we're interested in.
 
-## Gems
-* [OpenMaps API gem](https://github.com/sozialhelden/rosemary)
 
 ## OpenStreetMap
 * [OSM tutorial](http://www.emacsen.net/osm/osm-web-tutorial.pdf)
 * [Cloud map tiles](http://account.cloudmade.com/user)
+
 
 ## Misc
 * <https://govhack.relational.io>
