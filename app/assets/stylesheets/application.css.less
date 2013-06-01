@@ -15,7 +15,22 @@
  *= require osb
  */
 
+// Shadow
+
+@shadowColour: #999999;
+@shadowSizeNormal: 0px 2px 5px;
+@shadowSizeHover: 0px 4px 7px;
+@shadowSizeActive: 0px 0px 7px;
+
+.shadow {
+	-moz-box-shadow: @shadowSizeNormal @shadowColour;
+	-webkit-box-shadow: @shadowSizeNormal @shadowColour;
+	box-shadow: @shadowSizeNormal @shadowColour;
+}
+
 #map {
+	.shadow;
+	margin-top: 2em;
 	width: 100%;
 	height: 500px;
 }

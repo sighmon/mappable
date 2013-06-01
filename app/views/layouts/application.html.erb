@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/"><%= retina_image_tag('mappable.png') %></a>
+          <a class="brand" href="/"><%= retina_image_tag('mappable.png', :alt => "Mappable | Exploring maps", :title => "Mappable | Exploring maps") %></a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <li><%= link_to "Images", images_path %></li>
@@ -55,7 +55,7 @@
             </ul>
           </div>
         </div> -->
-        <div class="span9">
+        <div class="span12">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>

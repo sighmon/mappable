@@ -3,7 +3,8 @@ class ImagesController < ApplicationController
   # GET /images.json
   def index
     # @images = Image.all
-    @images = Image.order("id").page(params[:page])
+    # @images = Image.order("id").page(params[:page])
+    @images = Image.page(params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @images }
