@@ -18,6 +18,9 @@ gem 'twitter-bootstrap-rails'
 # Using meta-tags for head meta https://github.com/kpumuk/meta-tags
 gem 'meta-tags', :require => 'meta_tags'
 
+# Environment settings via Figaro https://github.com/laserlemon/figaro
+gem 'figaro'
+
 # Leaflet Rails
 gem 'leaflet-rails'
 
