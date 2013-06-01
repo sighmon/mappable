@@ -31,6 +31,13 @@ gem 'leaflet-rails'
 # OpenStreetMaps rendering https://github.com/zentrification/leaflet-plugins-rails
 gem 'leaflet-plugins-rails', :git => 'git://github.com/zentrification/leaflet-plugins-rails.git'
 
+# Google webfonts
+gem 'google-webfonts'
+
+# RetinaImageTag for retina display support
+# https://github.com/ffaerber/retina_image_tag
+gem 'retina_image_tag', '>= 1.0.2'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

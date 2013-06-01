@@ -1,15 +1,21 @@
 body {
   background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
+  color: #111;
+  font-family: "Droid Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: "Droid Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
   font-size: 13px;
   line-height: 18px;
+}
+
+h1 {
+  font-size: 2.3em;
+  line-height: 1em;
+  letter-spacing: -0.05em;
 }
 
 pre {
@@ -24,10 +30,12 @@ a {
     color: #666;
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    // color: #fff;
+    // background-color: #000;
   }
 }
+
+a.btn-primary:visited, a.btn-danger:visited, a.btn-success:visited, a.btn-warning:visited, a.btn-info:visited { color: #fff; }
 
 div {
   &.field, &.actions {
