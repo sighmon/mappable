@@ -30,8 +30,8 @@ development:
   encoding: unicode
   database: mappable_development
   pool: 5
-  username: mappable
-  password: password
+  username:
+  password:
 
 # Postgresql settings
 production:
