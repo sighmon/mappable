@@ -2,7 +2,10 @@
 
 // Set default location to Adelaide
 
-var map = L.map('map').setView([-34.92738, 138.60039], 13);
+var map = L.map('map');//.setView([-34.92738, 138.60039], 13);
+
+map.locate();
+
 L.tileLayer("http://{s}.tile.cloudmade.com/<%= ENV['MAP_TILES_API_KEY'] %>/97734@2x/256/{z}/{x}/{y}.png", {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
     maxZoom: 30
@@ -76,31 +79,43 @@ map.on('moveend', onMapMove);
 // Detecting location and placing a pin on the map. //
 //////////////////////////////////////////////////////
 
-function success(position) {
+function success(le) {
   $(function() {
     console.log("setting position");
-    console.log(position);
-    map.setView([position.coords.latitude, position.coords.longitude], 13);
-    var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+    console.log(le.latlng);
+    map.setView([le.latlng.lat, le.latlng.lng], 13);
+    var marker = L.marker([le.latlng.lat, le.latlng.lng]).addTo(map);
     marker.bindPopup("You are here!").openPopup();
-    
   });
 
   // instead of this we should re-gen the _wx block with ajax.
   // (in which case the modal should be nested inside the top div)
 }
 
-function error(msg) {
+
+
+
+function error(ee) {
   //var s = document.querySelector('#status');
   //s.innerHTML = typeof msg == 'string' ? msg : "failed";
   //s.className = 'fail';
+
+  // set default location
+  map.setView([-34.92738, 138.60039], 13);
   
-  console.log("Error",msg);
+  console.log("Error",ee.message);
 }
 
+map.on('locationfound', success);
+
+map.on('locationerror', error);
+
+
+/*** now handled by map.locate
 if (navigator.geolocation) {
   //navigator.geolocation.getCurrentPosition(success, function(){success({"coords":{"latitude":16.775833,"longitude":-3.009444,"accuracy":0}})});
   navigator.geolocation.getCurrentPosition(success, error, {timeout:10000});
 } else {
   error('not supported');
 }
+*/
