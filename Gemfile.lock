@@ -28,6 +28,8 @@ GEM
       activesupport (= 3.2.13)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-postgis-adapter (0.6.4)
+      rgeo-activerecord (~> 0.5.0)
     activeresource (3.2.13)
       activemodel (= 3.2.13)
       activesupport (= 3.2.13)
@@ -70,6 +72,7 @@ GEM
     meta-tags (1.5.0)
       actionpack
     mime-types (1.23)
+    modernizr-rails (2.6.2.2)
     multi_json (1.7.4)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -99,6 +102,11 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    rgeo (0.3.20)
+    rgeo-activerecord (0.5.0)
+      activerecord (>= 3.0.3)
+      arel (>= 2.0.6)
+      rgeo (>= 0.3.20)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -130,6 +138,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-postgis-adapter
   coffee-rails (~> 3.2.1)
   figaro
   jquery-rails
@@ -137,8 +146,10 @@ DEPENDENCIES
   leaflet-rails
   less-rails
   meta-tags
+  modernizr-rails
   pg
   rails (= 3.2.13)
+  rgeo
   sass-rails (~> 3.2.3)
   therubyracer
   twitter-bootstrap-rails

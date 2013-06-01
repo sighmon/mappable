@@ -1,21 +1,25 @@
 // Home page js
 
-var map = L.map('map').setView([51.505, -0.09], 13);
-L.tileLayer("http://{s}.tile.cloudmade.com/<%= ENV['MAP_TILES_API_KEY'] %>/997/256/{z}/{x}/{y}.png", {
+var map = L.map('map').setView([-38.93098, 139.59528], 13);
+L.tileLayer("http://{s}.tile.cloudmade.com/<%= ENV['MAP_TILES_API_KEY'] %>/97734@2x/256/{z}/{x}/{y}.png", {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-    maxZoom: 18
+    maxZoom: 30
 }).addTo(map);
 
-var circle = L.circle([51.508, -0.11], 500, {
+var circle = L.circle([-34.92738, 138.60039], 100, {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5
 }).addTo(map);
 
+var marker = L.marker([-34.92738, 138.60039]).addTo(map);
+marker.bindPopup("You are here! brp.").openPopup();
+
 var polygon = L.polygon([
-    [51.509, -0.08],
-    [51.503, -0.06],
-    [51.51, -0.047]
+    [-34.92738, 138.60039],
+    [-34.93738, 138.60039],
+    [-34.93738, 138.62039],
+    [-34.92738, 138.62039]
 ]).addTo(map);
 
 // var popup = L.popup()
@@ -33,3 +37,53 @@ function onMapClick(e) {
 }
 
 map.on('click', onMapClick);
+
+//////////////////////////////////////
+// Re-rendering things on map movement
+//////////////////////////////////////
+
+function onMapMove(e) {
+    polygon
+        .setLatLngs([[map.getCenter().lat - .02, map.getCenter().lng - .02],
+            [map.getCenter().lat + .02, map.getCenter().lng + .02],
+            [map.getCenter().lat - .02, map.getCenter().lng + .02],
+            [map.getCenter().lat + .02, map.getCenter().lng - .02]]
+        );
+}
+
+map.on('move', onMapMove);
+
+
+///////////////////////////////////////////////////
+// Detecting location and placing a pin on the map.
+///////////////////////////////////////////////////
+
+function success(position) {
+  $(function() {
+    console.log("setting position");
+    console.log(position);
+    //$("h3.local").data("longitude",position.coords.longitude);
+    //$("h3.local").data("latitude",position.coords.latitude);
+    //$("h3.local").parent().load("home/localwx div > *","latitude="+position.coords.latitude+"&longitude="+position.coords.longitude);
+    map.setView([position.coords.latitude, position.coords.longitude], 13);
+    
+  });
+
+  // instead of this we should re-gen the _wx block with ajax.
+  // (in which case the modal should be nested inside the top div)
+}
+
+function error(msg) {
+  //var s = document.querySelector('#status');
+  //s.innerHTML = typeof msg == 'string' ? msg : "failed";
+  //s.className = 'fail';
+  
+  console.log("Error",msg);
+}
+
+if (Modernizr.geolocation) {
+  //navigator.geolocation.getCurrentPosition(success, function(){success({"coords":{"latitude":16.775833,"longitude":-3.009444,"accuracy":0}})});
+  navigator.geolocation.getCurrentPosition(success, error, {timeout:3000});
+} else {
+  error('not supported');
+}

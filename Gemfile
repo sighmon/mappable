@@ -10,6 +10,10 @@ gem 'rails', '3.2.13'
 # Postgres gem
 gem 'pg'
 
+# Postgis http://www.waratuman.com/2012/10/26/postgis_and_rails/
+gem 'rgeo'
+gem 'activerecord-postgis-adapter'
+
 # Twitter Bootstrap Rails gem
 gem 'therubyracer'
 gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
@@ -37,6 +41,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'modernizr-rails'
 end
 
 gem 'jquery-rails'
