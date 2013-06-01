@@ -15,13 +15,19 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+//= require retina_image_tag
 // require leaflet-plugins
 
 // Fit the map to the screen size.
 
+var map_bottom_margin = -30
+if ($(window).width() > 767) {
+  map_bottom_margin = 60;
+}
+
 $(function() {
     $(window).resize(function() {
-        $('#map').height($(window).height() - ($('#map').offset().top + 60));
+        $('#map').height($(window).height() - ($('#map').offset().top + map_bottom_margin));
     });
     $(window).resize();
 });
