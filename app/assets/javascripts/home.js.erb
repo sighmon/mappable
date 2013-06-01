@@ -2,8 +2,13 @@
 
 // Set default location to Adelaide
 
+var retina_suffix = ""
+if (window.devicePixelRatio > 1) {
+  retina_suffix = "@2x";
+}
+
 var map = L.map('map').setView([-34.92738, 138.60039], 13);
-L.tileLayer("http://{s}.tile.cloudmade.com/<%= ENV['MAP_TILES_API_KEY'] %>/97734@2x/256/{z}/{x}/{y}.png", {
+L.tileLayer("http://{s}.tile.cloudmade.com/<%= ENV['MAP_TILES_API_KEY'] %>/97734"+retina_suffix+"/256/{z}/{x}/{y}.png", {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
     maxZoom: 30
 }).addTo(map);
@@ -11,8 +16,8 @@ L.tileLayer("http://{s}.tile.cloudmade.com/<%= ENV['MAP_TILES_API_KEY'] %>/97734
 // Make a custom marker
 
 var cameraIcon = L.icon({
-    iconUrl: 'assets/camera.png',
-    shadowUrl: 'assets/camera-shadow.png',
+    iconUrl: 'assets/camera'+retina_suffix+'.png',
+    shadowUrl: 'assets/camera-shadow'+retina_suffix+'.png',
 
     iconSize:     [20, 20], // size of the icon
     shadowSize:   [32, 20], // size of the shadow
