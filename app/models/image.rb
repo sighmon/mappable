@@ -14,10 +14,11 @@ class Image < ActiveRecord::Base
 
   def to_geojson_hash
     { "type" => "Feature", 
-      "properties" => {"name" => caption}, 
+      "id" => id,
+      "properties" => {"popupContent" => caption, "name" => caption}, 
       "geometry" => { 
         "type" => "Point", 
-        "coordinates" => [latitude, longitude] 
+        "coordinates" => [longitude, latitude] 
       } 
     }
   end

@@ -53,13 +53,19 @@ var myLayer = L.geoJson([], {
                        opacity: 1,
                        fillOpacity: 0.8
                });
-       }
+       },
+       onEachFeature: function (feature, layer) {
+            if (feature.properties && feature.properties.popupContent) {
+                layer.bindPopup(feature.properties.popupContent);
+            }
+        }
     }
     ).addTo(map);
 
 function search() {
     jQuery.get("images/search", { "maximum_latitude": map.getBounds().getNorthWest().lat, "minimum_latitude": map.getBounds().getSouthEast().lat, "maximum_longitude": map.getBounds().getSouthEast().lng, "minimum_longitude": map.getBounds().getNorthWest().lng }, function(data){
         myLayer.addData(data);
+        //L.geoJson(data).addTo(map);
         console.log(data);
     });
 }
