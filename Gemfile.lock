@@ -53,6 +53,8 @@ GEM
     figaro (0.6.4)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    flickraw (0.9.6)
+    geocoder (1.1.8)
     google-analytics-rails (0.0.4)
     google-webfonts (0.1.2)
       actionpack (>= 3.0.0)
@@ -165,6 +167,8 @@ DEPENDENCIES
   activerecord-postgis-adapter
   coffee-rails (~> 3.2.1)
   figaro
+  flickraw
+  geocoder
   google-analytics-rails
   google-webfonts
   jquery-rails
