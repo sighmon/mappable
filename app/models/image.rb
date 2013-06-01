@@ -26,6 +26,21 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def self.import_slsa_worldwar(filename)
+    File.open(filename).each_line do |line|
+      url, latitude, longitude, caption = line.split("\t")
+      if ((latitude!="-30") and (longitude!="135"))
+        Image.create(
+          latitude: latitude, 
+          longitude: longitude, 
+          source: "SLSA Worldwar",
+          fullsize_url: url,
+          caption: caption
+        )
+      end
+    end
+  end
+
   def to_geojson_hash
     { "type" => "Feature", 
       "id" => id,
