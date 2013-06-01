@@ -86,7 +86,11 @@ class ImagesController < ApplicationController
     image_results = Image.find_in_range(params[:minimum_latitude], params[:minimum_longitude], params[:maximum_latitude], params[:maximum_longitude])
 
     respond_to do |format|
-      format.json { render :json => { "type" => "FeatureCollection", "features" => image_results.collect {|i| i.to_geojson_hash} }.to_json }
+      format.json { render :json => { 
+        "type" => "FeatureCollection", 
+        "features" => image_results.collect{ |i| 
+          i.to_geojson_hash(render_to_string(formats: [:html], partial: "popup", locals: {fullsize_url: i.fullsize_url, caption: i.caption}, layout: false))}}.to_json
+      }
     end
   end
 end

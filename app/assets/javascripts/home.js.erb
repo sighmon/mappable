@@ -1,8 +1,7 @@
 // Home page js
 
-// Set default location to Adelaide
 
-var map = L.map('map');//.setView([-34.92738, 138.60039], 13);
+var map = L.map('map');
 
 map.ids = [];
 
@@ -57,7 +56,9 @@ function search() {
         //if (geoLayer) map.removeLayer(geoLayer);
         geoLayer = L.geoJson(data, {
           pointToLayer: function (feature, latlng) {
-            return L.marker(latlng, {icon: cameraIcon});
+            latlng.lat+=(Math.random()-0.5)*0.001;
+            latlng.lng+=(Math.random()-0.5)*0.001;
+            return L.marker(latlng, {icon: cameraIcon, draggable: true});
           },
           filter: function (feature, layer) {
             return ($.inArray(feature.id,map.ids)<0);
@@ -112,7 +113,7 @@ function error(ee) {
   //s.innerHTML = typeof msg == 'string' ? msg : "failed";
   //s.className = 'fail';
 
-  // set default location
+  // Set default location to Adelaide
   map.setView([-34.92738, 138.60039], 13);
   
   console.log("Error",ee.message);
@@ -122,12 +123,3 @@ map.on('locationfound', success);
 
 map.on('locationerror', error);
 
-
-/*** now handled by map.locate
-if (navigator.geolocation) {
-  //navigator.geolocation.getCurrentPosition(success, function(){success({"coords":{"latitude":16.775833,"longitude":-3.009444,"accuracy":0}})});
-  navigator.geolocation.getCurrentPosition(success, error, {timeout:10000});
-} else {
-  error('not supported');
-}
-*/

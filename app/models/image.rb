@@ -41,10 +41,10 @@ class Image < ActiveRecord::Base
     end
   end
 
-  def to_geojson_hash
+  def to_geojson_hash(popup_content)
     { "type" => "Feature", 
       "id" => id,
-      "properties" => {"popupContent" => "<img src='#{fullsize_url}' width='100%'><br />"+caption, "name" => caption}, 
+      "properties" => {"popupContent" => popup_content, "name" => caption}, 
       "geometry" => { 
         "type" => "Point", 
         "coordinates" => [longitude, latitude] 
