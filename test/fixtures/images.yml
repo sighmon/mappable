@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  latitude: 1.5
+  longitude: 1.5
+  location_description: MyText
+  fullsize_url: MyString
+  thumbnail_url: MyString
+  copyright: MyString
+  caption: MyText
+  relevant_from: 2013-06-01 16:17:33
+  relevant_to: 2013-06-01 16:17:33
+
+two:
+  latitude: 1.5
+  longitude: 1.5
+  location_description: MyText
+  fullsize_url: MyString
+  thumbnail_url: MyString
+  copyright: MyString
+  caption: MyText
+  relevant_from: 2013-06-01 16:17:33
+  relevant_to: 2013-06-01 16:17:33
