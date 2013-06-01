@@ -85,7 +85,6 @@ GEM
     meta-tags (1.5.0)
       actionpack
     mime-types (1.23)
-    modernizr-rails (2.6.2.2)
     multi_json (1.7.4)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -178,7 +177,6 @@ DEPENDENCIES
   leaflet-rails
   less-rails
   meta-tags
-  modernizr-rails
   pg
   rails (= 3.2.13)
   retina_image_tag (>= 1.0.2)
