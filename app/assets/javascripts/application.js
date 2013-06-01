@@ -16,3 +16,12 @@
 //= require twitter/bootstrap
 //= require_tree .
 // require leaflet-plugins
+
+// Fit the map to the screen size.
+
+$(function() {
+    $(window).resize(function() {
+        $('#map').height($(window).height() - ($('#map').offset().top + 60));
+    });
+    $(window).resize();
+});
