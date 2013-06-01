@@ -13,4 +13,5 @@ class HomeController < ApplicationController
                     :site_name => "Mappable"
                   }
   end
+
 end

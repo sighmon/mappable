@@ -11,4 +11,14 @@ class Image < ActiveRecord::Base
       Image.create(latitude: properties["LATITUDE"], longitude: properties["LONGITUDE"], caption: properties["NAME"])
     end
   end
+
+  def to_geojson_hash
+    { "type" => "Feature", 
+      "properties" => {"name" => caption}, 
+      "geometry" => { 
+        "type" => "Point", 
+        "coordinates" => [latitude, longitude] 
+      } 
+    }
+  end
 end
