@@ -44,7 +44,7 @@ class Image < ActiveRecord::Base
   def to_geojson_hash
     { "type" => "Feature", 
       "id" => id,
-      "properties" => {"popupContent" => caption, "name" => caption}, 
+      "properties" => {"popupContent" => "<img src='#{fullsize_url}' width='100%'><br />"+caption, "name" => caption}, 
       "geometry" => { 
         "type" => "Point", 
         "coordinates" => [longitude, latitude] 
