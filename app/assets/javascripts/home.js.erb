@@ -4,6 +4,8 @@
 
 var map = L.map('map');//.setView([-34.92738, 138.60039], 13);
 
+map.ids = [];
+
 map.locate();
 
 var retina_suffix = ""
@@ -49,17 +51,24 @@ var cameraIcon = L.icon({
 
 var geoLayer;
 
+var popupLayer = L.layerGroup().addTo(map);
+
 function search() {
     jQuery.get("images/search", { "maximum_latitude": map.getBounds().getNorthWest().lat, "minimum_latitude": map.getBounds().getSouthEast().lat, "maximum_longitude": map.getBounds().getSouthEast().lng, "minimum_longitude": map.getBounds().getNorthWest().lng }, function(data){
         //myLayer.addData(data);
-        if (geoLayer) map.removeLayer(geoLayer);
+        //if (geoLayer) map.removeLayer(geoLayer);
         geoLayer = L.geoJson(data, {
           pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {icon: cameraIcon});
           },
+          filter: function (feature, layer) {
+            return ($.inArray(feature.id,map.ids)<0);
+          },
           onEachFeature: function (feature, layer) {
+            map.ids.push(feature.id);
             if (feature.properties && feature.properties.popupContent) {
-              layer.bindPopup(feature.properties.popupContent);
+              //L.popup().setLatLng(latlng).setContent(feature.properties.popupContent).openOn(map);
+              layer.bindPopup(feature.properties.popupContent).openPopup();
             }
           }
         }).addTo(map);
