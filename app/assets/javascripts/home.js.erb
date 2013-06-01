@@ -8,21 +8,19 @@ map.ids = [];
 
 map.locate();
 
-var retina_suffix = ""
-if (window.devicePixelRatio > 1) {
-  retina_suffix = "@2x";
-}
-
-L.tileLayer("http://{s}.tile.cloudmade.com/<%= ENV['MAP_TILES_API_KEY'] %>/97734"+retina_suffix+"/256/{z}/{x}/{y}.png", {
+L.tileLayer("http://{s}.tile.cloudmade.com/<%= ENV['MAP_TILES_API_KEY'] %>/97734/256/{z}/{x}/{y}.png", {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-    maxZoom: 30
+    maxZoom: 30,
+    detectRetina: true
 }).addTo(map);
 
 // Make a custom marker
 
 var cameraIcon = L.icon({
-    iconUrl: 'assets/camera'+retina_suffix+'.png',
-    shadowUrl: 'assets/camera-shadow'+retina_suffix+'.png',
+    iconUrl: 'assets/camera.png',
+    iconRetinaUrl: 'assets/camera@2x.png',
+    shadowUrl: 'assets/camera-shadow.png',
+    shadowRetinaUrl: 'assets/camera-shadow@2x.png',
 
     iconSize:     [20, 20], // size of the icon
     shadowSize:   [32, 20], // size of the shadow
