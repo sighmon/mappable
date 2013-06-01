@@ -18,6 +18,12 @@ gem 'twitter-bootstrap-rails'
 # Using meta-tags for head meta https://github.com/kpumuk/meta-tags
 gem 'meta-tags', :require => 'meta_tags'
 
+# Leaflet Rails
+gem 'leaflet-rails'
+
+# OpenStreetMaps rendering https://github.com/zentrification/leaflet-plugins-rails
+gem 'leaflet-plugins-rails', :git => 'git://github.com/zentrification/leaflet-plugins-rails.git'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
