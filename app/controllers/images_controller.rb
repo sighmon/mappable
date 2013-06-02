@@ -1,4 +1,8 @@
 class ImagesController < ApplicationController
+
+  # Devise authentication
+  before_filter :authenticate_user!, :except => :search
+
   # GET /images
   # GET /images.json
   def index
