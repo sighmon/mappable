@@ -89,7 +89,7 @@ class ImagesController < ApplicationController
       format.json { render :json => { 
         "type" => "FeatureCollection", 
         "features" => image_results.collect{ |i| 
-          i.to_geojson_hash(render_to_string(formats: [:html], partial: "popup", locals: {fullsize_url: i.fullsize_url, caption: i.caption}, layout: false))}}.to_json
+          i.to_geojson_hash(render_to_string(formats: [:html], partial: "popup", locals: {fullsize_url: i.fullsize_url, caption: i.caption, image: i}, layout: false))}}.to_json
       }
     end
   end

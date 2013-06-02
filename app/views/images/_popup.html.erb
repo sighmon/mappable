@@ -1,1 +1,5 @@
-<img src='<%= fullsize_url %>' width='100%'><br /><%= sanitize(caption) %>
+<img src='<%= fullsize_url %>' width='100%'>
+<div class="edit-images">
+	<%= link_to 'edit', edit_image_path(image), :class => 'btn btn-mini' %>
+</div>
+<%= sanitize(caption) %>

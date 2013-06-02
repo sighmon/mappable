@@ -42,7 +42,8 @@ class Image < ActiveRecord::Base
   end
 
   def to_geojson_hash(popup_content)
-    { "type" => "Feature", 
+    # popup_content = "<img src='#{fullsize_url}' width='100%'> <div class='edit-images'> #{link_to 'edit', edit_image_path(image), :class => 'btn btn-mini'} </div> #{sanitize(caption)}"
+    { "type" => "Feature",
       "id" => id,
       "properties" => {"popupContent" => popup_content, "name" => caption}, 
       "geometry" => { 

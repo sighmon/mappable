@@ -42,6 +42,12 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :source, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :source, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :relevant_from, :class => 'control-label' %>
     <div class="controls">
       <%= f.datetime_select :relevant_from, :class => 'datetime_select' %>
