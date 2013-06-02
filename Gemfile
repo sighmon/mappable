@@ -25,6 +25,8 @@ gem 'meta-tags', :require => 'meta_tags'
 # Environment settings via Figaro https://github.com/laserlemon/figaro
 gem 'figaro'
 
+gem 'fog'
+
 # Leaflet Rails
 gem 'leaflet-rails'
 
