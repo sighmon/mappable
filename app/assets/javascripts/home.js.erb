@@ -1,5 +1,32 @@
 // Home page js
 
+/*
+ * Returns member of set with a given mean and standard deviation
+ * mean: mean
+ * standard deviation: std_dev 
+ */
+function createMemberInNormalDistribution(mean,std_dev){
+    return mean + (gaussRandom()*std_dev);
+}
+
+/*
+ * Returns random number in normal distribution centering on 0.
+ * ~95% of numbers returned should fall between -2 and 2
+ */
+function gaussRandom() {
+    var u = 2*Math.random()-1;
+    var v = 2*Math.random()-1;
+    var r = u*u + v*v;
+    /*if outside interval [0,1] start over*/
+    if(r == 0 || r > 1) return gaussRandom();
+
+    var c = Math.sqrt(-2*Math.log(r)/r);
+    return u*c;
+
+    /* todo: optimize this algorithm by caching (v*c) 
+     * and returning next time gaussRandom() is called.
+     * left out for simplicity */
+}
 
 var map = L.map('map');
 
@@ -56,8 +83,8 @@ function search() {
         //if (geoLayer) map.removeLayer(geoLayer);
         geoLayer = L.geoJson(data, {
           pointToLayer: function (feature, latlng) {
-            latlng.lat+=(Math.random()-0.5)*0.001;
-            latlng.lng+=(Math.random()-0.5)*0.001;
+            latlng.lat+=gaussRandom()*0.0005;
+            latlng.lng+=gaussRandom()*0.0005;
             return L.marker(latlng, {icon: cameraIcon, draggable: true});
           },
           filter: function (feature, layer) {
