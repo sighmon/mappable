@@ -1,6 +1,7 @@
 # Mappable
 A GovHack Adelaide challenge by [Hackerspace Adelaide](http://hackerspace-adelaide.org.au)
 
+![Our demo app](http://hackerspace-adelaide.org.au/img/mappable-web.jpg)
 
 ## Demo
 <http://mappable.herokuapp.com>
