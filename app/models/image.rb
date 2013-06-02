@@ -26,6 +26,19 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def self.import_slsa_photo(data)
+    data.split("\n").each do |line|
+      values = line.split("\t")
+      Image.create(
+        latitude: values[8],
+        longitude: values[9],
+        fullsize_url: values[1],
+        caption: values[6],
+        source: "SLSA Photo"
+      )
+    end
+  end
+
   def self.import_slsa_worldwar(data)
     data.split("\n").each do |line|
       url, latitude, longitude, caption = line.split("\t")
