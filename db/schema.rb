@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130602011128) do
+ActiveRecord::Schema.define(:version => 20130602043205) do
 
   create_table "images", :force => true do |t|
     t.float    "latitude"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130602011128) do
     t.datetime "updated_at",           :null => false
     t.string   "source"
     t.string   "source_ref"
+    t.string   "source_url"
   end
 
   create_table "users", :force => true do |t|
