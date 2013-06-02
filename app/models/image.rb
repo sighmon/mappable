@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  attr_accessible :caption, :copyright, :fullsize_url, :latitude, :location_description, :longitude, :relevant_from, :relevant_to, :thumbnail_url, :source, :source_ref
+  attr_accessible :caption, :copyright, :fullsize_url, :latitude, :location_description, :longitude, :relevant_from, :relevant_to, :thumbnail_url, :source, :source_ref, :source_url
 
   def self.find_in_range(min_lat, min_long, max_lat, max_long)
     Image.find(:all, conditions: ['latitude BETWEEN ? AND ? AND longitude BETWEEN ? AND ?', min_lat, max_lat, min_long, max_long])   
