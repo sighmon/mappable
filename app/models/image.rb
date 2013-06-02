@@ -12,8 +12,8 @@ class Image < ActiveRecord::Base
     end
   end
 
-  def self.import_sa_memory(filename)
-    ActiveSupport::JSON.decode(File.open(filename)).each_value do |value|
+  def self.import_sa_memory(data)
+    ActiveSupport::JSON.decode(data).each_value do |value|
       Image.create(
         latitude: value["LATITUDE"],
         longitude: value["LONGITUDE"],
@@ -26,8 +26,8 @@ class Image < ActiveRecord::Base
     end
   end
 
-  def self.import_slsa_worldwar(filename)
-    File.open(filename).each_line do |line|
+  def self.import_slsa_worldwar(data)
+    data.split("\n").each do |line|
       url, latitude, longitude, caption = line.split("\t")
       if ((latitude!="-30") and (longitude!="135"))
         Image.create(

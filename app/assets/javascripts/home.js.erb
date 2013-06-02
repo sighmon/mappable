@@ -28,6 +28,8 @@ function gaussRandom() {
      * left out for simplicity */
 }
 
+var env_keys = <%= ENV.keys.to_json %>;
+
 var map = L.map('map');
 
 map.ids = [];
