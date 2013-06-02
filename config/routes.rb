@@ -1,4 +1,6 @@
 Mappable::Application.routes.draw do
+  devise_for :users
+
   resources :images do
     collection do
       get 'search'

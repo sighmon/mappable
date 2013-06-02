@@ -35,7 +35,16 @@
           <a class="brand" href="/"><%= retina_image_tag('mappable.png', :alt => "Mappable | Exploring maps", :title => "Mappable | Exploring maps", :size => "30x30") %></a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Images", images_path %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to "Images", images_path %></li>
+              <% end %>
+              <div class="user-nav">
+                <% if user_signed_in? %>
+                  <%= link_to raw("<i class='icon-eject icon-white'></i>"), destroy_user_session_path, :method => :delete, :class => 'btn btn-mini' %>
+                <% else %>
+                  <%= link_to raw("<i class='icon-user icon-white'></i>"), new_user_session_path, :class => 'btn btn-mini' %>
+                <% end %>
+              </div>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

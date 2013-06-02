@@ -27,7 +27,9 @@ if ($(window).width() > 767) {
 
 $(function() {
     $(window).resize(function() {
-        $('#map').height($(window).height() - ($('#map').offset().top + map_bottom_margin));
+        if ($('#map').length > 0) {
+        	$('#map').height($(window).height() - ($('#map').offset().top + map_bottom_margin));
+        }
     });
     $(window).resize();
 });
