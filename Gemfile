@@ -53,6 +53,9 @@ gem 'devise'
 # gem 'less-rails-bootstrap'
 # gem 'less-rails-bootstrap-devise', :git => 'git://github.com/bigbento/less-rails-bootstrap-devise.git'
 
+# New Relic for server information https://devcenter.heroku.com/articles/newrelic
+gem 'newrelic_rpm'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

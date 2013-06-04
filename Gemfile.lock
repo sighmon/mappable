@@ -107,6 +107,7 @@ GEM
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.7)
+    newrelic_rpm (3.6.3.104)
     nokogiri (1.5.9)
     orm_adapter (0.4.0)
     pg (0.15.1)
@@ -205,6 +206,7 @@ DEPENDENCIES
   leaflet-rails
   less-rails
   meta-tags
+  newrelic_rpm
   pg
   rails (= 3.2.13)
   retina_image_tag (>= 1.0.2)
