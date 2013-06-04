@@ -1,4 +1,4 @@
-<img src='<%= fullsize_url %>' width='100%'>
+<a href="<%= fullsize_url %>" target="_blank"><img src='<%= fullsize_url %>' width='100%'></a>
 <% if user_signed_in? %>
 	<div class="edit-images">
 		<%= link_to 'edit', edit_image_path(image), :class => 'btn btn-mini' %>
