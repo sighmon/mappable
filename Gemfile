@@ -25,6 +25,9 @@ gem 'meta-tags', :require => 'meta_tags'
 # Environment settings via Figaro https://github.com/laserlemon/figaro
 gem 'figaro'
 
+# For Heroku
+gem 'rails_12factor'
+
 gem 'fog'
 
 # Leaflet Rails
